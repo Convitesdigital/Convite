@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Convite de Casamento Elegante</title>
 
-  <!-- GOOGLE FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -14,40 +13,36 @@
       margin:0;
       padding:0;
       box-sizing:border-box;
-    }
-
-    :root{
-      --gold:#d4af37;
-      --gold-soft:#f4e2a0;
-      --dark:#0f0f0f;
-      --white:#ffffff;
-      --bg:#111111;
-      --card:#1a1a1a;
+      scroll-behavior:smooth;
     }
 
     body{
       font-family:'Poppins', sans-serif;
-      background:linear-gradient(135deg,#050505,#111,#1a1a1a);
+      background:#f7f2eb;
       overflow-x:hidden;
-      color:white;
+      color:#333;
     }
 
-    /* =========================
+    :root{
+      --gold:#d4af37;
+      --dark:#1b1b1b;
+      --white:#ffffff;
+      --soft:#efe6dc;
+    }
+
+    /* ========================
        CAPA INICIAL
-    ========================== */
+    =========================*/
 
     .cover{
       position:fixed;
-      width:100%;
-      height:100vh;
-      background:
-      linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.75)),
-      url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1200&auto=format&fit=crop') center/cover;
+      inset:0;
+      background:linear-gradient(135deg,#1c1c1c,#3d2c1d);
       display:flex;
       align-items:center;
       justify-content:center;
       z-index:9999;
-      transition:1.5s;
+      transition:1.5s ease;
     }
 
     .cover.hide{
@@ -59,90 +54,94 @@
     .envelope{
       width:350px;
       height:230px;
-      background:linear-gradient(145deg,#111,#222);
-      border:2px solid var(--gold);
-      border-radius:12px;
       position:relative;
-      overflow:hidden;
-      box-shadow:0 0 30px rgba(212,175,55,.4);
+      cursor:pointer;
+      perspective:1000px;
     }
 
-    .envelope:before{
-      content:'';
+    .envelope-body{
       position:absolute;
       width:100%;
       height:100%;
-      background:linear-gradient(45deg,transparent,var(--gold-soft),transparent);
-      opacity:.12;
+      background:#f5e7d2;
+      border-radius:10px;
+      overflow:hidden;
+      box-shadow:0 20px 50px rgba(0,0,0,.4);
     }
 
     .flap{
       position:absolute;
-      top:0;
       width:100%;
-      height:120px;
-      background:linear-gradient(145deg,#222,#111);
-      clip-path:polygon(0 0,100% 0,50% 100%);
-      border-bottom:2px solid var(--gold);
+      height:100%;
+      background:#e8d4b7;
+      clip-path:polygon(0 0,50% 55%,100% 0);
+      transform-origin:top;
+      transition:1s;
+      z-index:5;
     }
 
     .seal{
+      position:absolute;
       width:90px;
       height:90px;
+      background:var(--gold);
       border-radius:50%;
-      background:radial-gradient(circle,var(--gold),#9c7c1f);
-      position:absolute;
       top:50%;
       left:50%;
       transform:translate(-50%,-50%);
       display:flex;
       align-items:center;
       justify-content:center;
-      cursor:pointer;
-      font-size:35px;
-      color:#fff;
-      box-shadow:0 0 25px rgba(212,175,55,.8);
-      transition:.4s;
+      color:white;
+      font-size:32px;
+      z-index:10;
+      box-shadow:0 0 20px rgba(0,0,0,.3);
       animation:pulse 2s infinite;
     }
 
-    .seal:hover{
-      transform:translate(-50%,-50%) scale(1.08);
-    }
-
     @keyframes pulse{
-      0%{box-shadow:0 0 10px rgba(212,175,55,.5);}
-      50%{box-shadow:0 0 35px rgba(212,175,55,1);}
-      100%{box-shadow:0 0 10px rgba(212,175,55,.5);}
+      0%{transform:translate(-50%,-50%) scale(1);}
+      50%{transform:translate(-50%,-50%) scale(1.08);}
+      100%{transform:translate(-50%,-50%) scale(1);}
     }
 
-    .open-text{
-      position:absolute;
-      bottom:20px;
-      width:100%;
+    .open .flap{
+      transform:rotateX(180deg);
+    }
+
+    /* ========================
+       HERO
+    =========================*/
+
+    .hero{
+      min-height:100vh;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px 20px;
+      background:
+      linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+      url(WhatsApp\ Image\ 2026-06-03\ at\ 16.22.38.jpeg) center/cover;
       text-align:center;
-      color:var(--gold-soft);
-      letter-spacing:3px;
-      font-size:13px;
+      color:white;
     }
 
-    /* =========================
-       CONTEÚDO PRINCIPAL
-    ========================== */
-
-    .main{
-      display:none;
-      animation:fadeIn 2s ease;
+    .glass{
+      backdrop-filter:blur(10px);
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.2);
+      border-radius:30px;
+      padding:40px;
+      max-width:900px;
+      width:100%;
+      animation:fadeUp 1.5s ease;
     }
 
-    .main.show{
-      display:block;
-    }
-
-    @keyframes fadeIn{
+    @keyframes fadeUp{
       from{
         opacity:0;
-        transform:translateY(30px);
+        transform:translateY(50px);
       }
       to{
         opacity:1;
@@ -150,321 +149,326 @@
       }
     }
 
-    .hero{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex-direction:column;
-      text-align:center;
-      padding:50px 20px;
-      position:relative;
-    }
-
-    .hero::before{
-      content:'';
-      position:absolute;
-      width:100%;
-      height:100%;
-      background:
-      linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.75)),
-      url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200&auto=format&fit=crop') center/cover;
-      z-index:-1;
-    }
-
-    .photo-frame{
-      width:260px;
-      height:260px;
-      border-radius:50%;
-      padding:8px;
-      border:3px solid var(--gold);
-      margin-bottom:25px;
-      box-shadow:0 0 30px rgba(212,175,55,.4);
-    }
-
-    .photo-frame img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      border-radius:50%;
-    }
-
-    .subtitle{
-      color:var(--gold-soft);
+    .mini{
       letter-spacing:5px;
-      margin-bottom:12px;
       font-size:14px;
-    }
-
-    .names{
-      font-family:'Cormorant Garamond', serif;
-      font-size:70px;
-      color:var(--gold);
-      font-weight:600;
-      line-height:1.1;
-    }
-
-    .heart{
-      font-size:35px;
-      margin:15px 0;
-      color:var(--gold-soft);
-    }
-
-    .date-box{
-      margin-top:30px;
-      display:flex;
-      gap:20px;
-      flex-wrap:wrap;
-      justify-content:center;
-    }
-
-    .date-item{
-      background:rgba(255,255,255,.06);
-      backdrop-filter:blur(6px);
-      border:1px solid rgba(212,175,55,.4);
-      padding:18px 25px;
-      border-radius:20px;
-      min-width:120px;
-    }
-
-    .date-item h2{
-      color:var(--gold);
-      font-size:32px;
-    }
-
-    .date-item p{
-      color:#ddd;
-      font-size:13px;
-      letter-spacing:2px;
-    }
-
-    /* =========================
-       HISTÓRIA
-    ========================== */
-
-    .section{
-      padding:90px 20px;
-    }
-
-    .container{
-      max-width:1200px;
-      margin:auto;
+      margin-bottom:15px;
     }
 
     .title{
-      text-align:center;
       font-family:'Cormorant Garamond', serif;
-      font-size:52px;
-      color:var(--gold);
-      margin-bottom:25px;
+      font-size:80px;
+      font-weight:600;
+      line-height:1;
     }
 
-    .text{
-      text-align:center;
-      max-width:850px;
-      margin:auto;
-      line-height:1.9;
-      color:#ddd;
-      font-size:17px;
+    .subtitle{
+      margin-top:20px;
+      font-size:18px;
+      line-height:1.8;
     }
 
-    /* =========================
-       BOTÕES CIRCULARES
-    ========================== */
-
-    .actions{
+    .date-box{
+      margin-top:35px;
       display:flex;
       justify-content:center;
+      gap:20px;
       flex-wrap:wrap;
-      gap:30px;
+    }
+
+    .date-item{
+      width:120px;
+      height:120px;
+      border-radius:20px;
+      background:rgba(255,255,255,.1);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      border:1px solid rgba(255,255,255,.2);
+    }
+
+    .date-item h2{
+      font-size:38px;
+      color:var(--gold);
+    }
+
+    .date-item p{
+      margin-top:5px;
+      letter-spacing:2px;
+      font-size:13px;
+    }
+
+    /* ========================
+       FOTO DOS NOIVOS
+    =========================*/
+
+    .couple-section{
+      padding:100px 20px;
+      background:#fff;
+    }
+
+    .section-title{
+      text-align:center;
+      font-size:55px;
+      font-family:'Cormorant Garamond', serif;
+      color:#2d2d2d;
+      margin-bottom:50px;
+    }
+
+    .couple-container{
+      max-width:1200px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:50px;
+      align-items:center;
+    }
+
+    .photo-box{
+      position:relative;
+    }
+
+    .photo-box img{
+      width:100%;
+      border-radius:30px;
+      object-fit:cover;
+      height:600px;
+      box-shadow:0 15px 40px rgba(0,0,0,.15);
+    }
+
+    .story{
+      padding:20px;
+    }
+
+    .story h2{
+      font-size:60px;
+      font-family:'Cormorant Garamond', serif;
+      margin-bottom:20px;
+    }
+
+    .story p{
+      line-height:2;
+      font-size:17px;
+      color:#666;
+    }
+
+    /* ========================
+       BOTÕES CIRCULARES
+    =========================*/
+
+    .actions{
+      padding:100px 20px;
+      background:linear-gradient(135deg,#2c2c2c,#111);
+      color:white;
+      text-align:center;
+    }
+
+    .action-grid{
+      max-width:1200px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:40px;
       margin-top:60px;
     }
 
     .circle-btn{
-      width:140px;
-      height:140px;
+      width:180px;
+      height:180px;
       border-radius:50%;
-      border:2px solid var(--gold);
-      background:linear-gradient(145deg,#1b1b1b,#111);
-      color:white;
-      text-decoration:none;
+      background:linear-gradient(145deg,#d4af37,#8f6b00);
+      margin:auto;
       display:flex;
       flex-direction:column;
-      align-items:center;
       justify-content:center;
-      text-align:center;
-      padding:15px;
-      transition:.4s;
+      align-items:center;
+      text-decoration:none;
+      color:white;
+      transition:.5s;
+      box-shadow:0 15px 40px rgba(0,0,0,.3);
       cursor:pointer;
-      box-shadow:0 0 20px rgba(212,175,55,.15);
     }
 
     .circle-btn:hover{
       transform:translateY(-10px) scale(1.05);
-      box-shadow:0 0 30px rgba(212,175,55,.45);
+    }
+
+    .circle-btn i{
+      font-size:45px;
+      margin-bottom:10px;
     }
 
     .circle-btn span{
-      font-size:13px;
-      margin-top:10px;
-      line-height:1.4;
-    }
-
-    .icon{
-      font-size:35px;
-      color:var(--gold);
-    }
-
-    /* =========================
-       PRESENTES
-    ========================== */
-
-    .gift-box{
-      margin-top:50px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(212,175,55,.25);
-      padding:40px;
-      border-radius:30px;
-      backdrop-filter:blur(8px);
-    }
-
-    .gift-box h3{
-      text-align:center;
-      color:var(--gold);
-      font-size:35px;
-      margin-bottom:25px;
-      font-family:'Cormorant Garamond', serif;
-    }
-
-    .form-group{
-      margin-bottom:20px;
-    }
-
-    input,
-    textarea,
-    select{
-      width:100%;
-      padding:16px;
-      border:none;
-      outline:none;
-      border-radius:14px;
-      background:#222;
-      color:white;
       font-size:15px;
-      border:1px solid rgba(255,255,255,.1);
+      width:80%;
+      line-height:1.5;
     }
 
-    textarea{
-      resize:none;
-      height:120px;
+    /* ========================
+       PRESENTES
+    =========================*/
+
+    .gift-modal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.7);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:99999;
+      padding:20px;
+    }
+
+    .gift-modal.active{
+      display:flex;
+    }
+
+    .gift-content{
+      background:white;
+      width:100%;
+      max-width:500px;
+      border-radius:25px;
+      padding:30px;
+      animation:zoom .5s ease;
+    }
+
+    @keyframes zoom{
+      from{
+        transform:scale(.7);
+        opacity:0;
+      }
+      to{
+        transform:scale(1);
+        opacity:1;
+      }
+    }
+
+    .gift-content h2{
+      text-align:center;
+      margin-bottom:20px;
+      font-family:'Cormorant Garamond', serif;
+      font-size:40px;
+    }
+
+    .gift-content select,
+    .gift-content textarea,
+    .gift-content input{
+      width:100%;
+      margin-bottom:15px;
+      padding:15px;
+      border-radius:12px;
+      border:1px solid #ddd;
+      font-size:16px;
+      outline:none;
     }
 
     .send-btn{
       width:100%;
-      padding:18px;
+      padding:16px;
       border:none;
       border-radius:15px;
-      background:linear-gradient(145deg,var(--gold),#a27c17);
-      color:black;
-      font-weight:700;
+      background:var(--gold);
+      color:white;
+      font-size:17px;
       cursor:pointer;
-      font-size:16px;
       transition:.4s;
     }
 
     .send-btn:hover{
-      transform:scale(1.02);
+      opacity:.9;
     }
 
-    /* =========================
-       RODAPÉ
-    ========================== */
+    /* ========================
+       FOOTER
+    =========================*/
 
     footer{
-      padding:40px 20px;
+      background:#111;
+      color:white;
       text-align:center;
-      border-top:1px solid rgba(255,255,255,.08);
-      color:#aaa;
+      padding:40px 20px;
     }
 
-    /* =========================
+    footer h2{
+      font-family:'Cormorant Garamond', serif;
+      font-size:45px;
+      margin-bottom:10px;
+    }
+
+    /* ========================
        RESPONSIVO
-    ========================== */
+    =========================*/
 
     @media(max-width:768px){
 
-      .names{
-        font-size:48px;
+      .title{
+        font-size:52px;
       }
 
-      .title{
-        font-size:40px;
+      .story h2{
+        font-size:42px;
+      }
+
+      .section-title{
+        font-size:42px;
+      }
+
+      .photo-box img{
+        height:450px;
       }
 
       .circle-btn{
-        width:120px;
-        height:120px;
-      }
-
-      .photo-frame{
-        width:220px;
-        height:220px;
+        width:150px;
+        height:150px;
       }
     }
+
   </style>
 </head>
 <body>
 
-  <!-- ÁUDIO -->
-  <audio id="music" loop>
-    <!-- COLOQUE AQUI O LINK DA SUA MÚSICA -->
+  <!-- SOM DE FUNDO -->
+  <audio id="music" autoplay loop>
+    <!-- COLOQUE AQUI O LINK DA MÚSICA -->
     <source src="Valsa - Converted with FlexClip (mp3cut.net).mp3" type="audio/mp3">
   </audio>
 
   <!-- CAPA -->
   <div class="cover" id="cover">
-    <div class="envelope">
 
-      <div class="flap"></div>
+    <div class="envelope" id="envelope">
 
-      <div class="seal" id="openInvite">
-        💍
-      </div>
+      <div class="envelope-body">
+        <div class="flap"></div>
 
-      <div class="open-text">
-        ABRIR CONVITE
+        <div class="seal">
+          ❤
+        </div>
+
       </div>
 
     </div>
+
   </div>
 
-  <!-- CONTEÚDO -->
-  <main class="main" id="mainContent">
+  <!-- HERO -->
+  <section class="hero">
 
-    <!-- HERO -->
-    <section class="hero">
+    <div class="glass">
 
-      <div class="subtitle">
-        "PORTANTO, JÁ NÃO SÃO DOIS, MAS UMA SÓ CARNE. POR ISSO, O QUE DEUS 
-        POS SOB O MESMO JUGO, O HOMEM NÃO DEVE SEPARAR"
-        <br>
-        <b>Mateus 19:6</b>
-      </div>
-
-      <!-- FOTO DOS NOIVOS -->
-      <div class="photo-frame">
-        <!-- TROQUE A FOTO -->
-        <img src="Captura de ecrã 2026-06-03 100815.jpg" alt="Noivos">
-      </div>
+      <p class="mini">
+        VOCÊ ESTÁ CONVIDADO PARA O NOSSO CASAMENTO
+      </p>
 
       <!-- NOMES -->
-      <h1 class="names">
-        OSÓRIO<br>
-        & <br>
-        LEUSA
+      <h1 class="title">
+        OSÓRIO <br>&<br> LEUSA
       </h1>
 
-      <div class="heart">❤</div>
+      <p class="subtitle">
+        Têm a honra de convidar você para celebrar conosco o momento mais especial das nossas vidas.
+      </p>
 
       <!-- DATA -->
       <div class="date-box">
@@ -491,179 +495,245 @@
 
       </div>
 
-    </section>
+    </div>
 
-    <!-- HISTÓRIA -->
-    <section class="section">
-      <div class="container">
+  </section>
 
-        <h2 class="title">
-          Nossa História
+  <!-- FOTO DOS NOIVOS -->
+  <section class="couple-section">
+
+    <h2 class="section-title">
+      Nossa História
+    </h2>
+
+    <div class="couple-container">
+
+      <div class="photo-box">
+
+        <!-- FOTO DOS NOIVOS -->
+        <img src="NOIVOS copy.jpg">
+
+      </div>
+
+      <div class="story">
+
+        <h2>
+          Um Amor Eterno
         </h2>
 
-        <p class="text">
-          Com imensa alegria e amor em nossos corações,
-          convidamos você para fazer parte deste momento inesquecível.
-          Cada detalhe desta celebração foi preparado com carinho para celebrar
-          uma nova jornada, marcada por amor, cumplicidade e eternidade.
+        <p>
+          Entre sorrisos, sonhos e momentos inesquecíveis,
+          encontramos um no outro a razão do nosso amor.
+          Agora queremos compartilhar este momento especial
+          com pessoas que fazem parte da nossa história.
+          Sua presença tornará este dia ainda mais Especial.
         </p>
 
-        <!-- BOTÕES -->
-        <div class="actions">
-
-          <!-- CERIMÔNIA -->
-          <a class="circle-btn"
-             href="https://maps.app.goo.gl/wdwN5tMytjsMEdgK7?g_st=iw"
-             target="_blank">
-
-            <div class="icon">📍</div>
-            <span>Local da Cerimônia</span>
-
-          </a>
-
-          <!-- FESTA -->
-          <a class="circle-btn"
-             href="https://maps.app.goo.gl/wdwN5tMytjsMEdgK7?g_st=iw"
-             target="_blank">
-
-            <div class="icon">🥂</div>
-            <span>Local da Celebração</span>
-
-          </a>
-
-          <!-- CONFIRMAÇÃO -->
-          <a class="circle-btn"
-             href="https://wa.me/258848765020?text=Confirmo%20a%20minha%20presença%20no%20casamento."
-             target="_blank">
-
-            <div class="icon">✔</div>
-            <span>Confirmar Presença</span>
-
-          </a>
-
-        </div>
-
       </div>
-    </section>
 
-    <!-- PRESENTES -->
-    <section class="section">
+    </div>
 
-      <div class="container">
+  </section>
 
-        <div class="gift-box">
+  <!-- BOTÕES -->
+  <section class="actions">
 
-          <h3>Lista de Presentes <br>Casa das Louças: Baixa da Cidade <br> <b>(OPCIONAL)</b></h3>
+    <h2 class="section-title" style="color:white;">
+      Informações do Evento
+    </h2>
 
-          <div class="form-group">
-            <input type="text" id="guestName" placeholder="Seu nome">
-          </div>
+    <div class="action-grid">
 
-          <div class="form-group">
-            <select id="giftSelect">
+      <!-- CERIMONIA -->
+      <a class="circle-btn"
+      href=""
+      target="_blank">
 
-              <option value="">
-                Escolha um presente
-              </option>
+        <i>📍</i>
+        <span>
+          Ver Local da Cerimónia
+        </span>
 
-              <option>
-                Jogo de Panelas
-              </option>
+      </a>
 
-              <option>
-                Geladeira
-              </option>
+      <!-- FESTA -->
+      <a class="circle-btn"
+      href="https://maps.app.goo.gl/wdwN5tMytjsMEdgK7?g_st=iw"
+      target="_blank">
 
-              <option>
-                Smart TV
-              </option>
+        <i>🎉</i>
+        <span>
+          Ver Local da Celebração
+        </span>
 
-              <option>
-                Lua de Mel
-              </option>
+      </a>
 
-              <option>
-                Sofá
-              </option>
+      <!-- CONFIRMAR -->
+      <a class="circle-btn"
+      href="https://wa.me/258848765020?text=Olá,%20confirmo%20a%20minha%20presença%20no%20casamento."
+      target="_blank">
 
-              <option>
-                Microondas
-              </option>
+        <i>✔</i>
+        <span>
+          Confirmar Presença
+        </span>
 
-              <option>
-                Outro
-              </option>
+      </a>
 
-            </select>
-          </div>
+      <!-- PRESENTE -->
+      <div class="circle-btn" id="giftBtn">
 
-          <div class="form-group">
-            <textarea
-              id="customGift"
-              placeholder="Caso o presente não esteja na lista, escreva aqui o que deseja oferecer..."></textarea>
-          </div>
-
-          <button class="send-btn" onclick="sendGift()">
-            Enviar Presente pelo WhatsApp
-          </button>
-
-        </div>
+        <i>🎁</i>
+        <span>
+          Escolher Presente
+        </span>
 
       </div>
 
-    </section>
+    </div>
 
-    <!-- RODAPÉ -->
-    <footer>
-      Feito com amor para celebrar uma união eterna ✨
-    </footer>
+  </section>
 
-  </main>
+  <!-- MODAL PRESENTES -->
+  <div class="gift-modal" id="giftModal">
+
+    <div class="gift-content">
+
+      <h2>
+        CASA DAS LOUÇAS(Baixa da Cidade) <br>
+        Lista de Presentes - OPCIONAL
+      </h2>
+
+      <input type="text" id="guestName" placeholder="Seu nome">
+
+      <select id="giftSelect">
+
+        <option value="Jogo de Talheres">
+          Jogo de Talheres
+        </option>
+
+        <option value="Microondas">
+          Microondas
+        </option>
+
+        <option value="Frigorífico">
+          Frigorífico
+        </option>
+
+        <option value="Televisão">
+          Televisão
+        </option>
+
+        <option value="Liquidificador">
+          Liquidificador
+        </option>
+
+        <option value="Outro">
+          Outro
+        </option>
+
+      </select>
+
+      <textarea id="customGift"
+      placeholder="Escreva o presente caso não esteja na lista"></textarea>
+
+      <button class="send-btn"
+      onclick="sendGift()">
+        Enviar Presente
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+
+    <h2>
+      Esperamos por Você
+    </h2>
+
+    <p>
+      Será uma honra celebrar este momento especial consigo.
+    </p>
+
+  </footer>
 
   <script>
 
     // ABRIR CONVITE
-    const cover = document.getElementById('cover');
-    const openInvite = document.getElementById('openInvite');
-    const mainContent = document.getElementById('mainContent');
-    const music = document.getElementById('music');
 
-    openInvite.addEventListener('click', () => {
+    const envelope = document.getElementById("envelope");
+    const cover = document.getElementById("cover");
 
-      cover.classList.add('hide');
+    envelope.addEventListener("click", () => {
+
+      envelope.classList.add("open");
 
       setTimeout(() => {
-        mainContent.classList.add('show');
-      }, 1000);
 
-      // TOCAR MÚSICA
-      music.play();
+        cover.classList.add("hide");
+
+      }, 1200);
 
     });
 
-    // ENVIAR PRESENTE
+    // MODAL PRESENTE
+
+    const giftBtn = document.getElementById("giftBtn");
+    const giftModal = document.getElementById("giftModal");
+
+    giftBtn.addEventListener("click", () => {
+
+      giftModal.classList.add("active");
+
+    });
+
+    giftModal.addEventListener("click", (e) => {
+
+      if(e.target === giftModal){
+
+        giftModal.classList.remove("active");
+
+      }
+
+    });
+
+    // ENVIAR PRESENTE VIA WHATSAPP
+
     function sendGift(){
 
-      const name = document.getElementById('guestName').value;
-      const gift = document.getElementById('giftSelect').value;
-      const customGift = document.getElementById('customGift').value;
+      let name = document.getElementById("guestName").value;
+      let gift = document.getElementById("giftSelect").value;
+      let custom = document.getElementById("customGift").value;
 
-      const message =
-`Olá, meu nome é ${name}.
+      let finalGift = gift;
 
-Presente escolhido: ${gift}
+      if(gift === "Outro"){
 
-Mensagem/Outro presente:
-${customGift}`;
+        finalGift = custom;
 
-      // TROQUE O NÚMERO
-      const phone = '258842383649';
+      }
 
-      const url =
-`https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      let message =
+      `Olá! Meu nome é ${name} e gostaria de oferecer o seguinte presente: ${finalGift}`;
 
-      window.open(url,'_blank');
+      let phone = "258848765020";
+
+      let url =
+      `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+      window.open(url, "_blank");
+
     }
+
+    // TOCAR MUSICA EM ALGUNS NAVEGADORES
+
+    document.addEventListener("click", function(){
+
+      document.getElementById("music").play();
+
+    });
 
   </script>
 
